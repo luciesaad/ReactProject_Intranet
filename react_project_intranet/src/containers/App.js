@@ -1,5 +1,5 @@
 import React from 'react';
-import {Start} from './Start.js'
+import Start from './Start.js'
 import {Nav} from "../Components/Nav";
 
 function App() {
