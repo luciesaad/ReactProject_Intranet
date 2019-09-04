@@ -1,9 +1,11 @@
 import React from "react";
 
-export const AppIntranetNavbar = () => {
+const AppIntranetNavbar = () => {
     return (
         <div>
-            <h1>this is the navbar</h1>
+            <h1>Navbar</h1>
         </div>
     );
 };
+
+export default AppIntranetNavbar
