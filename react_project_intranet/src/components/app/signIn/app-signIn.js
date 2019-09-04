@@ -4,53 +4,22 @@ import './app-signIn.css'
 
 import IntraLogo from '../../../assets/images/logo_intra_solutions.png'
 
-const INCORRECT_USER_CREDENTIALS = "Wrong usernam or password!";
+const INCORRECT_USER_CREDENTIALS = "Wrong username or password!";
 
 class AppSignIn extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLoggedIn: props.isLoggedIn
-        }
-        console.log("Initial sign in status = " + this.state.isLoggedIn)
-    }
-
-    /*state = {
-        isValidUser: ''
-    };*/
-
-
     isValidUserCredentials = (e) => {
         console.log("valid user&&password = " + e);
-        // this.setState({isValidUser: e});
-        if (e) {
-            this.setState({isLoggedIn: true});
-            console.log("isLoggedIn = " + this.state.isLoggedIn);
-        }
-
-
-        // TODO: Fungerar ej
-        /*this.setState(this.state.isLoggedIn = () => ({
-            isLoggedIn: e
-        }));*/
         this.props.onClickSignInButton(e);
-
-        // console.log("isValidUser = " + this.state.isValidUser);
     };
 
     onSubmit = event => {
         event.preventDefault();
 
-        const userName = this.uName.value;
-        const passWord = this.pWord.value;
-
-        // console.log("username = " + userName);
-        // console.log("password = " + passWord);
-
-        if (userName === '1') {
+        // Validate user
+        if (this.uName.value === '1') {
             // console.log("Found user")
-            if (passWord === '1') {
+            if (this.pWord.value === '1') {
                 // console.log("Correct password")
                 console.log("Correct credentials");
                 this.isValidUserCredentials(true)
@@ -64,7 +33,6 @@ class AppSignIn extends Component {
             console.log(INCORRECT_USER_CREDENTIALS);
             this.isValidUserCredentials(false)
         }
-
     };
 
     render() {
@@ -87,8 +55,6 @@ class AppSignIn extends Component {
                     <p>
                         <button type="submit">Submit</button>
                     </p>
-
-
                 </form>
             </div>
         )
