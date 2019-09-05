@@ -1,12 +1,22 @@
 import React, {Component} from 'react';
 
 import './app-signIn.css'
+import InvalidCredentials from './app-signIn-invalidCredentials';
 
 import IntraLogo from '../../../assets/images/logo_intra_solutions.png'
 
-const INCORRECT_USER_CREDENTIALS = "Wrong username or password!";
-
 class AppSignIn extends Component {
+    constructor() {
+        super();
+        this.state = {
+            showErrorMessage: false
+        }
+    }
+
+    showErrorMessage = (event) => {
+        console.log("App-signIn.js: showErrorMessage = " + event);
+        this.setState({showErrorMessage: event})
+    };
 
     isValidUserCredentials = (e) => {
         console.log("valid user&&password = " + e);
@@ -18,20 +28,16 @@ class AppSignIn extends Component {
 
         // Validate user
         if (this.uName.value === '1') {
-            // console.log("Found user")
             if (this.pWord.value === '1') {
-                // console.log("Correct password")
-                console.log("Correct credentials");
+                // console.log("Correct credentials");
                 this.isValidUserCredentials(true)
             } else {
-                // console.log("Incorrect password")
-                console.log(INCORRECT_USER_CREDENTIALS);
-                this.isValidUserCredentials(false)
+                this.isValidUserCredentials(false);
+                this.showErrorMessage(true)
             }
         } else {
-            // console.log("User not found")
-            console.log(INCORRECT_USER_CREDENTIALS);
-            this.isValidUserCredentials(false)
+            this.isValidUserCredentials(false);
+            this.showErrorMessage(true)
         }
     };
 
@@ -55,6 +61,7 @@ class AppSignIn extends Component {
                     <p>
                         <button type="submit">Submit</button>
                     </p>
+                    <InvalidCredentials onShowErrorMessage={this.state.showErrorMessage}/>
                 </form>
             </div>
         )
