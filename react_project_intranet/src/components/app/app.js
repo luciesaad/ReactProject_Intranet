@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-//import axios from 'axios';//TODO
-import {isLoggedIn} from './logIn/AuthHelper'; //TODO getToken use later!!!
+import axios from 'axios';
+import {isLoggedIn, getToken} from './logIn/AuthHelper';
 import './app.css';
 import Intranet from "./intranet";
 
@@ -11,7 +11,17 @@ class App extends Component {
         if(!isLoggedIn()) {
             this.props.history.replace('/login')
         }else{
-            console.log('here will go the get method for chat messages')
+            console.log('init.Now running get method for the token')
+            axios({
+                method: 'get',
+                url: 'http://localhost:3010/api',
+                headers: {
+                    authorization: 'Bearer ' + getToken()
+                }
+            }).then((result) => {
+                console.log("app protected resource")
+                console.log(result)
+            })
         }
     }
     render() {
