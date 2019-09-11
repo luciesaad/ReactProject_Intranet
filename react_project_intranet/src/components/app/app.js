@@ -1,73 +1,27 @@
 import React, {Component} from 'react';
-import axios from 'axios';
-
-import SignIn from './signIn/'
-import Intranet from "./intranet/";
-
+//import axios from 'axios';//TODO
+import {isLoggedIn} from './logIn/AuthHelper'; //TODO getToken use later!!!
 import './app.css';
+import Intranet from "./intranet";
 
 class App extends Component {
-    constructor() {
-        super();
-        this.state = {
-            users: [],
-            passwords: [],
-            isLoggedIn: false
-        }
-    }
 
     componentDidMount() {
-        axios.get('http://localhost:3010/users')
-            .then(res => {
-                console.log(res.data);
-                this.setState({users: res.data})
-            })
-        axios.get('http://localhost:3010/passwords')
-            .then(res => {
-                console.log(res.data);
-                this.setState({passwords: res.data})
-            })
-        axios({
-            method: 'post',
-            url: 'http://localhost:3010/home',
-            data: {
-                otherUser: '4',
-                otherPass: '4'
-            }
-        })
+        console.log(isLoggedIn())
+        if(!isLoggedIn()) {
+            this.props.history.replace('/login')
+        }else{
+            console.log('here will go the get method for chat messages')
+        }
     }
-
-    onClickSignInButton = (event) => {
-        console.log("App.js: isLoggedIn = " + event);
-        this.setState({isLoggedIn: event})
-    };
-
     render() {
-        // If user is not logged in go to signin page
-        if (!this.state.isLoggedIn) {
+        console.log('in render')
             return (
                 <div className="app" >
-                    <SignIn isLoggedIn={this.state.isLoggedIn} onClickSignInButton={this.onClickSignInButton}/>
-                </div>
-            )
-        }
+                    <Intranet/>
 
-        // If user have valid credentials go to intranet page
-        if (this.state.isLoggedIn) {
-            return (
-                <div className="app">
-                    <Intranet isLoggedIn={this.state.isLoggedIn} showUsers={this.state.users} showPass={this.state.passwords}/>
                 </div>
-            )
-        }
-
-        return (
-            <div className="app">
-                <h1>AppStart</h1>
-                <h2>Something went wrong!</h2>
-            </div>
-        );
-    }
+                )
+            }
 }
-
 export default App;

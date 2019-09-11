@@ -14,10 +14,6 @@ const AppIntranet = (props) => {
             <AppIntranetNavbar/>
             <img src={MontessoriVillornaLogo} alt="Logotype for Montessori school"/>
             <h1>Welcome</h1>
-            <ul>
-                {props.showUsers.map(value => (<li key={value}> {value}  </li>))}
-                {props.showPass.map(value => (<li key={value}> {value}  </li>))}
-            </ul>
             <div>
                 <AppIntranetLeft/>
                 <AppIntranetMain/>
