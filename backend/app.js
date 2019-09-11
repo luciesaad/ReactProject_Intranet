@@ -6,7 +6,7 @@ const envVars = require('dotenv').config()
 const http = require('http')
 const isAuthorized = require('./controllers/auth').isAuthorized;
 const port = 3010
-//const signup = require('./controllers/auth').signup;
+// const signup = require('./controllers/auth').signup;
 const login = require('./controllers/auth').login;
 
 const app = express()
@@ -28,7 +28,7 @@ app.get('/', function(req, res){
 })
 
 
-//app.post('/signup', signup)
+// app.post('/signup', signup)
 app.post('/login', login);
 app.use('/api', isAuthorized);
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './Components/app';
+import App from './components/app';
 import './index.css';
 import 'tachyons';
 //import * as serviceWorker from './serviceWorker';
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import LogIn from './Components/app/logIn'
+import LogIn from './components/app/logIn'
 
 ReactDOM.render( <Router>
     <div className="app" >

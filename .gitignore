@@ -91,3 +91,5 @@ js/egetSkrap.js
 
 # Env file
 .env
+backend/node_modules/
+react_project_intranet/node_modules/
