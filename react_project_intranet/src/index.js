@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
 import './index.css';
+
 import 'tachyons';
+import '@material-ui/core';
 //import * as serviceWorker from './serviceWorker';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import LogIn from './components/app/logIn'
