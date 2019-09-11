@@ -1,10 +1,10 @@
 export const setToken = (token) => {
-    localStorage.setItem('keyToTheFuture', token)
+    sessionStorage.setItem('keyToTheFuture', token)
     console.log(token)
 }
 
 export const getToken = () => {
-    return localStorage.getItem('keyToTheFuture')
+    return sessionStorage.getItem('keyToTheFuture')
 }
 
 export const isLoggedIn = () => {

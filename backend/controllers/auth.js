@@ -74,7 +74,7 @@ const isAuthorized = async (req, res) => {
 }
 
 module.exports = {
-    //signup: signup
+    //signup: signup,
     login: login,
     isAuthorized: isAuthorized
 }
