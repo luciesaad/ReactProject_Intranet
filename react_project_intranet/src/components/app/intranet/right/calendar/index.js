@@ -1,0 +1,1 @@
+export {default} from './app-intranet-right-calendar'
