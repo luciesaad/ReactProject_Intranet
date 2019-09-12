@@ -34,6 +34,10 @@ const signup = (req, res) => {
     })
 }
 
+/*const isAdmin = (req, res) => {
+
+}*/
+
 const login = async (req, res) => {
     //TODO Exercise - add input validation and error handling
     console.log('inuti login fn');
