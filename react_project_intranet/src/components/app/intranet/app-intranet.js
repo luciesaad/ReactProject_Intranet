@@ -6,6 +6,7 @@ import Left from "./left"
 import Main from "./main";
 import Right from "./right"
 import Footer from "./footer";
+import Admin from "./admin";
 
 let style2 = {
     padding: "0px",/*
@@ -18,14 +19,40 @@ let style2 = {
 
 class AppIntranet extends Component {
     state = {
-        categorySelected: 0
+        categorySelected: 0,
+        isUserAdmin: true,
+        administrateUsers: true
     };
 
     onCategoryChange = selectedCat => {
         console.log("selected category = " + selectedCat);
         this.setState({
-            categorySelected:selectedCat
+            categorySelected: selectedCat
         })
+    };
+
+    workSpace = () => {
+        if (this.state.administrateUsers) {
+            return (
+                <div className='fl w-100'>
+                    <Admin/>
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <div className='fl w-100'>
+                        <Left/>
+                        <Main/>
+                        <Right/>
+                    </div>
+
+                    <div className='fl w-100 bg-light-pink bw2 shadow-5 cf' style={style2}>
+                        DAS CHAT
+                    </div>
+                </div>
+            )
+        }
     };
 
     render() {
@@ -33,19 +60,12 @@ class AppIntranet extends Component {
             <Fragment>
                 <Router>
                     <div className='tc code bg-lightest-blue'>
-                        <Nav selectedCat={this.state.categorySelected} onSelect={this.onCategoryChange}/>
+                        <Nav selectedCat={this.state.categorySelected} onSelect={this.onCategoryChange}
+                             userIsAdmin={this.state.isUserAdmin}/>
                     </div>
                 </Router>
 
-                <div className='fl w-100'>
-                    <Left/>
-                    <Main/>
-                    <Right/>
-                </div>
-
-                <div className='fl w-100 bg-light-pink bw2 shadow-5 cf' style={style2}>
-                    DAS CHAT
-                </div>
+                {this.workSpace()}
 
                 <Footer/>
             </Fragment>

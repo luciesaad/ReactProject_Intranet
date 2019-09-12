@@ -6,7 +6,15 @@ import {Link} from "react-router-dom";
 
 import MontessoriVillornaLogo from "../../../../assets/images/logo_montessorivillorna.png";
 
-const AppIntranetNav = ({selectedCat, onSelect}) => {
+function isUserAdmin(isAdmin) {
+    if (isAdmin) {
+        return(
+                <Tab label='admin' component={Link} to='/admin'/>
+            )
+    }
+}
+
+const AppIntranetNav = ({selectedCat, onSelect, userIsAdmin}) => {
     return (
         <div>
             <div className='fl w-20'>
@@ -26,8 +34,7 @@ const AppIntranetNav = ({selectedCat, onSelect}) => {
                         <Tab label='dashboard' component={Link} to='/'/>
                         <Tab label='about' component={Link} to='/about'/>
                         <Tab label='something' component={Link} to='/something'/>
-
-                        <Tab label='admin' component={Link} to='/admin'/>
+                        {isUserAdmin(userIsAdmin)}
                     </Tabs>
                 </Paper>
             </div>

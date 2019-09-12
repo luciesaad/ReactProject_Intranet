@@ -8,7 +8,7 @@ class AppLogIn extends Component {
     state = {
         user: '',
         pass: '',
-    }
+    };
 
     onFormSubmit = event => {
         event.preventDefault();
