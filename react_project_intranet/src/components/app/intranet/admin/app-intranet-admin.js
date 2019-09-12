@@ -16,14 +16,14 @@ class AppIntranetAdmin extends Component{
         console.log("New user registered");
         console.log(this.state.newIsAdmin);
 
-        const loginData = {
+        const signupData = {
             newUserName: this.state.newUser,
             newUserPassword: this.state.newPassword,
             newIsAdmin: this.state.newIsAdmin
         };
 
         // Signup fn
-        axios.post('http://localhost:3010/signup', {loginData}) //post method
+        axios.post('http://localhost:3010/signup', {signupData}) //post method
             .then(res => {
                 if (res && res.data && res.data.signedJWT) {
                     console.log('inuti .then post: ' + res.data);
@@ -40,19 +40,19 @@ class AppIntranetAdmin extends Component{
                 <h3 className='f4'>Add a new user </h3>
 
                 <form onSubmit={event => this.onFormSubmit(event)}>
-                    <p>Username:</p>
+                    <p>E-mail:</p>
                     <input
                         type="email"
                         value={this.state.newUser}
-                        placeholder='New user'
+                        placeholder='New e-mail'
                         onChange={event => this.setState({newUser: event.target.value})}/>
 
                     <p>Password:</p>
                     <input
-                        type="text"
+                        type="password"
                         value={this.state.newPassword}
-                    placeholder='New password'
-                    onChange={event => this.setState({newPassword: event.target.value})}/>
+                        placeholder='New password'
+                        onChange={event => this.setState({newPassword: event.target.value})}/>
                     <p><b>Allow administrative competence? &nbsp;&nbsp;</b>
                     <FormControlLabel
                         control={

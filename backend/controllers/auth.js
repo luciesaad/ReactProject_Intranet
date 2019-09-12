@@ -20,10 +20,13 @@ const signup = (req, res) => {
 
     //TODO Exercise - add input validation and error handling
     const user = new User()
-    user.email = req.body.loginData.userName
-    user.password = req.body.loginData.passName
+    user.email = req.body.signupData.newUserName
+    user.password = req.body.signupData.newUserPassword
+    user.isAdmin = req.body.signupData.newIsAdmin
+    console.log(user)
     user.save(function (err, user) {
         if (err) {
+            console.log('something doesnt add up')
             console.log(err)
             return res.status(500).end()
         } else {
@@ -33,10 +36,6 @@ const signup = (req, res) => {
         }
     })
 }
-
-/*const isAdmin = (req, res) => {
-
-}*/
 
 const login = async (req, res) => {
     //TODO Exercise - add input validation and error handling
@@ -48,6 +47,7 @@ const login = async (req, res) => {
     }
     const matchingPasswords = await user.checkPassword(req.body.loginData.passName)
     if (!matchingPasswords) {
+        console.log('invalid combination')
         return res.status(400).send({ message: 'invalid combination' })
     }
     const signedJWT = createJWT(user)
@@ -78,7 +78,7 @@ const isAuthorized = async (req, res) => {
 }
 
 module.exports = {
-    //signup: signup,
+    signup: signup,
     login: login,
     isAuthorized: isAuthorized
 }
