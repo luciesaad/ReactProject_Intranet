@@ -12,10 +12,16 @@ const userSchema = new mongoose.Schema(
         password: {
             type: String,
             required: true
+        },
+        isAdmin: {
+            type: Boolean,
+            required: true,
+            unique: false
         }
     },
     { timestamps: true }
 )
+
 
 userSchema.methods.checkPassword = function(password) {
     console.log('in check password')
