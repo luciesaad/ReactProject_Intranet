@@ -1,6 +1,5 @@
 export const setToken = (token) => {
     sessionStorage.setItem('keyToTheFuture', token)
-    console.log(token)
 }
 
 export const getToken = () => {
