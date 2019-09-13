@@ -9,7 +9,7 @@ import MontessoriVillornaLogo from "../../../../assets/images/logo_montessorivil
 function isUserAdmin(isAdmin) {
     if (isAdmin) {
         return(
-                <Tab label='admin' component={Link} to='/intranet/admin'/>
+                <Tab label='admin' component={Link} to='/admin'/>
             )
     }
 }
@@ -17,10 +17,10 @@ function isUserAdmin(isAdmin) {
 const AppIntranetNav = ({selectedCat, onSelect, userIsAdmin}) => {
     return (
         <div>
-            <div className='fl w-20'>
+            {/*<div className='fl w-20'>
                 <img src={MontessoriVillornaLogo} alt="Logotype for Montessori school" style={{width: 300, height: 60}}/>
-            </div>
-            <div className='fl w-80'>
+            </div>*/}
+            <div className='fl w-100'>
                 <Paper>
                     <Tabs
                         className='f1-l bg-lightest-blue'
@@ -31,9 +31,8 @@ const AppIntranetNav = ({selectedCat, onSelect, userIsAdmin}) => {
                         indicatorColor='primary'
                         textColor='primary'
                         centered>
-                        <Tab label='dashboard' component={Link} to='/intranet'/>
-                        <Tab label='about' component={Link} to='/intranet/about'/>
-                        <Tab label='something' component={Link} to='/intranet/something'/>
+                        <Tab label='dashboard' component={Link} to='/'/>
+                        <Tab label='chat' component={Link} to='/chat'/>
                         {isUserAdmin(userIsAdmin)}
                     </Tabs>
                 </Paper>
@@ -45,21 +44,3 @@ const AppIntranetNav = ({selectedCat, onSelect, userIsAdmin}) => {
 };
 
 export default AppIntranetNav
-/*
-
-<div className='bg-lightest-blue dib br3 pa3 ma2 bw2 shadow-5' style={{width: 1400}}>
-<div>
-<img src={MontessoriVillornaLogo} alt="Logotype for Montessori school"/>
-    </div>
-<div className='hover-bg-light-blue grow-large'>Link</div>
-<div className='hover-bg-light-blue grow-large'>Link</div>
-<div className='hover-bg-light-blue grow-large'>Dropdown</div>
-<div>
-<form>
-<input type="text"/>
-    <input type="submit"/>
-    </form>
-</div>
-</div>
-
-*/
