@@ -4,7 +4,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import {setToken} from "../../logIn/AuthHelper";
 
-class AppIntranetAdmin extends Component{
+class AppIntranetAdmin extends Component {
     state = {
         newUser: '',
         newPassword: '',
@@ -59,16 +59,16 @@ class AppIntranetAdmin extends Component{
                         placeholder='New password'
                         onChange={event => this.setState({newPassword: event.target.value})}/>
                     <p><b>Allow administrative competence? &nbsp;&nbsp;</b>
-                    <FormControlLabel
-                        control={
-                            <Switch
-                                checked={this.state.newIsAdmin}
-                                onChange={e => this.setState({newIsAdmin: e.target.checked})}
-                                value={this.newIsAdmin}
-                                color="primary"
-                            />
-                        }
-                    />
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={this.state.newIsAdmin}
+                                    onChange={e => this.setState({newIsAdmin: e.target.checked})}
+                                    value={this.newIsAdmin}
+                                    color="primary"
+                                />
+                            }
+                        />
                     </p>
                     <p>
                         <input type="submit" value='Submit'/>
@@ -77,6 +77,7 @@ class AppIntranetAdmin extends Component{
             </div>
         );
     }
-};
+}
+;
 
 export default AppIntranetAdmin
