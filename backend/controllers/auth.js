@@ -48,10 +48,12 @@ const login = async (req, res) => {
     const matchingPasswords = await user.checkPassword(req.body.loginData.passName)
     if (!matchingPasswords) {
         console.log('invalid combination')
-        return res.status(400).send({ message: 'invalid combination' })
+        return res.status(400).send({ message: 'invalid combination' })//TODO why is it not returning 400 with the message? //Lucie
     }
+    const administrator = user.isAdmin
+    console.log(administrator)
     const signedJWT = createJWT(user)
-    return res.status(201).send({signedJWT})
+    return res.status(201).send({signedJWT, administrator})
 }
 
 //for now running lots of console logs to check it works.
