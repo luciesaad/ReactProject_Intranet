@@ -9,7 +9,7 @@ import MontessoriVillornaLogo from "../../../../assets/images/logo_montessorivil
 function isUserAdmin(isAdmin) {
     if (isAdmin) {
         return(
-                <Tab label='admin' component={Link} to='/admin'/>
+                <Tab label='admin' component={Link} to='/intranet/admin'/>
             )
     }
 }
@@ -31,9 +31,9 @@ const AppIntranetNav = ({selectedCat, onSelect, userIsAdmin}) => {
                         indicatorColor='primary'
                         textColor='primary'
                         centered>
-                        <Tab label='dashboard' component={Link} to='/'/>
-                        <Tab label='about' component={Link} to='/about'/>
-                        <Tab label='something' component={Link} to='/something'/>
+                        <Tab label='dashboard' component={Link} to='/intranet'/>
+                        <Tab label='about' component={Link} to='/intranet/about'/>
+                        <Tab label='something' component={Link} to='/intranet/something'/>
                         {isUserAdmin(userIsAdmin)}
                     </Tabs>
                 </Paper>

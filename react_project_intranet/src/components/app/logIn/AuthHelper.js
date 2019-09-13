@@ -14,6 +14,18 @@ export const isLoggedIn = () => {
     }
 }
 
+export const setAdmin = (admin) => {sessionStorage.setItem('is Admin', admin)}
+export const getAdmin = () => {sessionStorage.getItem('is Admin')}
+
+
+export const isAdmin = () => {
+    if (getAdmin()) {
+        return true
+    } else {
+        return false
+    }
+}
+
 export const logout = () => {
     localStorage.removeItem('sometokenname')
 }
