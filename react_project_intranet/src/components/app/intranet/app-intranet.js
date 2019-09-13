@@ -20,7 +20,7 @@ let style2 = {
 class AppIntranet extends Component {
     state = {
         categorySelected: 0,
-        isUserAdmin: true,
+        // isUserAdmin: true,
         administrateUsers: true
     };
 
@@ -61,7 +61,7 @@ class AppIntranet extends Component {
                 <Router>
                     <div className='tc code bg-lightest-blue'>
                         <Nav selectedCat={this.state.categorySelected} onSelect={this.onCategoryChange}
-                             userIsAdmin={this.state.isUserAdmin}/>
+                             userIsAdmin={this.state.administrateUsers}/>
                     </div>
                 </Router>
 

@@ -31,6 +31,11 @@ class AppIntranetAdmin extends Component{
                     this.props.history.replace('/')
                 }
             })
+
+        alert("User added!")
+        this.setState({newUser: ''});
+        this.setState({newPassword: ''});
+        this.setState({newIsAdmin: false})
     };
 
     render() {
