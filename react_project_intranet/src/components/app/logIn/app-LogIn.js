@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './app-logIn.css'
 import IntraLogo from '../../../assets/images/logo_intra_solutions.png'
 import axios from "axios";
-import {setToken} from "./AuthHelper";
+import {setToken, setAdmin} from "./AuthHelper";
 
 class AppLogIn extends Component {
     state = {
@@ -21,9 +21,14 @@ class AppLogIn extends Component {
         axios.post('http://localhost:3010/login', {loginData}) //post method
             .then(res => {
                 if (res && res.data && res.data.signedJWT) {
-                    console.log('inuti .then post: ' + res.data);
                     setToken(res.data.signedJWT)
-                    this.props.history.replace('/')
+                    setAdmin(res.data.administrator)
+
+                    if(res.data.administrator) { //set the admin view if isAdmin = true
+                        this.props.history.replace('/')
+                    }else {
+                        this.props.history.replace('/')
+                    }
                 }
             })
     };
