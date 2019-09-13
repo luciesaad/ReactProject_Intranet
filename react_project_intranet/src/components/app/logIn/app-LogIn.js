@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './app-logIn.css'
 import IntraLogo from '../../../assets/images/logo_intra_solutions.png'
 import axios from "axios";
-import {setToken, setAdmin} from "./AuthHelper";
+import {setToken, setAdmin, setName} from "./AuthHelper";
 
 class AppLogIn extends Component {
     state = {
@@ -22,7 +22,8 @@ class AppLogIn extends Component {
             .then(res => {
                 if (res && res.data && res.data.signedJWT) {
                     setToken(res.data.signedJWT)
-                    setAdmin(res.data.administrator)
+                    setAdmin(res.data.administrator);
+                    setName(res.data.name);
 
                     if(res.data.administrator) { //set the admin view if isAdmin = true
                         this.props.history.replace('/')

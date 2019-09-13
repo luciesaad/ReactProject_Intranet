@@ -50,8 +50,10 @@ const login = async (req, res) => {
         console.log('invalid combination')
         return res.status(400).send({ message: 'invalid combination' })
     }
+    const administrator = user.isAdmin;
+    const name = req.body.loginData.userName;
     const signedJWT = createJWT(user)
-    return res.status(201).send({signedJWT})
+    return res.status(201).send({signedJWT, administrator, name})
 }
 
 //for now running lots of console logs to check it works.

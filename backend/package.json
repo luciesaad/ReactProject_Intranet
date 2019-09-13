@@ -14,7 +14,9 @@
     "dotenv": "^8.1.0",
     "envvars": "^0.1.0",
     "express": "^4.17.1",
+    "http": "0.0.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.6.13"
+    "mongoose": "^5.6.13",
+    "socket.io": "^2.2.0"
   }
 }
