@@ -26,6 +26,18 @@ export const isAdmin = () => {
     }
 }
 
+export const setName = (username) => {sessionStorage.setItem('name', username)}
+export const getName = () => {sessionStorage.getItem('name')}
+
+
+export const nameIs = () => {
+    if (getName()) {
+        return true
+    } else {
+        return false
+    }
+}
+
 export const logout = () => {
     localStorage.removeItem('sometokenname')
 }

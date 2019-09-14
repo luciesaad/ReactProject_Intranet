@@ -3,6 +3,7 @@ import axios from 'axios';
 import {isLoggedIn, getToken} from './logIn/AuthHelper';
 import './app.css';
 import Intranet from "./intranet";
+import Chat from "./intranet/chat";
 
 class App extends Component {
 
@@ -24,6 +25,7 @@ class App extends Component {
             })
         }
     }
+
 
     render() {
         console.log('in render');

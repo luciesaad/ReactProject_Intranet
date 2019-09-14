@@ -50,6 +50,7 @@ const login = async (req, res) => {
         console.log('invalid combination')
         return res.status(400).send({ message: 'invalid combination' })//TODO why is it not returning 400 with the message? //Lucie
     }
+
     const administrator = user.isAdmin
     console.log(administrator)
     const signedJWT = createJWT(user)
