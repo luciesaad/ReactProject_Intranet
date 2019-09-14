@@ -6,8 +6,9 @@ import Left from "./left"
 import Main from "./main";
 import Right from "./right"
 import Footer from "./footer";
-import Admin from "./admin";
 
+import Admin from "./admin";
+import Chat from "./chat";
 
 class AppIntranet extends Component {
     state = {
@@ -57,7 +58,7 @@ function dashBoard() {
 function chat() {
     return (
         <div className='tc fl w-100'>
-            <h2>Chat</h2>
+            <Chat/>
         </div>
     )
 }

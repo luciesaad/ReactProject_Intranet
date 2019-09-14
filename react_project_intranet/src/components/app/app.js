@@ -1,8 +1,7 @@
 import React, {Component, Fragment} from 'react';
 // import axios from 'axios';
-import {isLoggedIn, getToken} from './logIn/AuthHelper';
+import {isLoggedIn, /*getToken*/} from './logIn/AuthHelper';
 import Intranet from "./intranet";
-import Chat from "./intranet/chat";
 
 class App extends Component {
 
