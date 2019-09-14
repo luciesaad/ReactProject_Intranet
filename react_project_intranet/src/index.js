@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
 import './index.css';
@@ -11,11 +11,11 @@ import LogIn from './components/app/logIn'
 
 ReactDOM.render(
     <Router>
-        <div className="app">
+        <Fragment>
             <Route exact path="/" component={App}/> {/*//path to protected resources available only with login*/}
             <Route exact path="/login" component={LogIn}/> {/*//redirect here without login*/}
             {/*TODO<Route exact path="/home/admin" component={Admin} />*/}
-        </div>
+        </Fragment>
     </Router>, document.getElementById('root'));
 
 

@@ -36,7 +36,7 @@ class AppLogIn extends Component {
 
     render() {
         return (
-            <div>
+            <div className='tc'>
                 <img src={IntraLogo} alt="Intra Solutions" className="logo"/>
                 <form onSubmit={e => this.onFormSubmit(e)}>
                     <p>Username:</p>

@@ -17,7 +17,7 @@ class AppIntranet extends Component {
     };
 
     onCategoryChange = selectedCat => {
-        console.log("selected category = " + selectedCat);
+        // console.log("selected category = " + selectedCat);
         this.setState({
             categorySelected: selectedCat
         })
@@ -27,40 +27,36 @@ class AppIntranet extends Component {
         return (
             <Fragment>
                 <Router>
-                    <div>
-                        <Nav
-                            className='tc code bg-lightest-blue'
-                            selectedCat={this.state.categorySelected}
-                            onSelect={this.onCategoryChange}
-                            userIsAdmin={this.state.administrateUsers}/>
+                    <Nav
+                        className='tc code bg-lightest-blue'
+                        selectedCat={this.state.categorySelected}
+                        onSelect={this.onCategoryChange}
+                        userIsAdmin={this.state.administrateUsers}/>
 
-                        <Route exact path='/' component={dashBoard}/>
-                        <Route path='/chat' component={chat}/>
-                        <Route path='/admin' component={admin} />
-                    </div>
+                    <Route exact path='/' component={dashBoard}/>
+                    <Route path='/chat' component={chat}/>
+                    <Route path='/admin/start' component={admin}/>
                 </Router>
 
                 <Footer/>
             </Fragment>
         );
     }
-};
+}
 
 function dashBoard() {
     return (
-        <div>
-            <div className='fl w-100'>
-                <Left/>
-                <Main/>
-                <Right/>
-            </div>
+        <div className='tc fl w-100'>
+            <Left/>
+            <Main/>
+            <Right/>
         </div>
     )
 }
 
 function chat() {
     return (
-        <div className='fl w-100'>
+        <div className='tc fl w-100'>
             <h2>Chat</h2>
         </div>
     )
@@ -68,7 +64,7 @@ function chat() {
 
 function admin() {
     return (
-        <div className='fl w-100'>
+        <div className='tc fl w-100'>
             <Admin/>
         </div>
     )

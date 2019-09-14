@@ -1,4 +1,5 @@
-import React, {Fragment} from "react";
+import React from "react";
+import {logout} from '../../logIn/AuthHelper';
 
 import MontessoriVillornaLogo from "../../../../assets/images/logo_montessorivillorna.png";
 
@@ -13,7 +14,7 @@ let style = {
 
 const AppIntranetFooter = () => {
     return (
-        <div className='bg-gray bw2 shadow-5 cf' style={style}>
+        <div className='tc bg-gray bw2 shadow-5 cf' style={style}>
             <div className='fl w-third'>
                 <img src={MontessoriVillornaLogo} alt="Logotype for Montessori school" style={{width: 300, height: 60}}/>
             </div>
@@ -21,7 +22,7 @@ const AppIntranetFooter = () => {
                 Copyright INTRA SOLUTIONS
             </div>
             <div className='fl w-third f2'>
-                Något väsentligt ;)
+                <button onClick={logout}>Logout</button>
             </div>
         </div>
     );
