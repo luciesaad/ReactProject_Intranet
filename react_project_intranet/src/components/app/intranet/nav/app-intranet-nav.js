@@ -4,12 +4,10 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import {Link} from "react-router-dom";
 
-import MontessoriVillornaLogo from "../../../../assets/images/logo_montessorivillorna.png";
-
 function isUserAdmin(isAdmin) {
     if (isAdmin) {
         return(
-                <Tab label='admin' component={Link} to='/admin'/>
+                <Tab label='admin' component={Link} to='/admin/start'/>
             )
     }
 }
@@ -17,9 +15,6 @@ function isUserAdmin(isAdmin) {
 const AppIntranetNav = ({selectedCat, onSelect, userIsAdmin}) => {
     return (
         <div>
-            {/*<div className='fl w-20'>
-                <img src={MontessoriVillornaLogo} alt="Logotype for Montessori school" style={{width: 300, height: 60}}/>
-            </div>*/}
             <div className='fl w-100'>
                 <Paper>
                     <Tabs

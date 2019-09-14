@@ -27,7 +27,11 @@ export const isAdmin = () => {
 }
 
 export const logout = () => {
-    localStorage.removeItem('sometokenname')
+    const deleteTokenKey = sessionStorage.getItem('keyToTheFuture');
+    localStorage.removeItem(deleteTokenKey)
+
+    const deleteAdminKey = sessionStorage.getItem('is Admin');
+    localStorage.removeItem(deleteAdminKey)
 }
 
 //Exercise - Add funtionality to check if token has expired or not
