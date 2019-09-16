@@ -101,8 +101,7 @@ export default function PaperSheet() {
                         onClick={() => {
                             sendChatAction({from: username, msg: textValue, topic: activeTopic});
                             changeTextValue('');
-                        }}
-                    >
+                        }}>
                         Send
                     </Button>
                 </div>
