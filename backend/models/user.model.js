@@ -40,10 +40,6 @@ userSchema.methods.checkPassword = function(password) {
     console.log('in check password')
     const passwordHash = this.password
     return new Promise((resolve, reject) => {
-        /*if(passwordHash !== password) {
-            return false
-        }
-        return true*/
         bcrypt.compare(password, passwordHash, (err, same) => {
             if (err) {
                 return reject(err)
