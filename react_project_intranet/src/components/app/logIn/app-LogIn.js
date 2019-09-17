@@ -4,6 +4,22 @@ import IntraLogo from '../../../assets/images/logo_intra_solutions.png'
 import axios from "axios";
 import {setToken, setAdmin, setName} from "./AuthHelper";
 
+// Redux
+import {connect} from "react-redux";
+import {setAdminStatus} from "../redux/actions";
+
+
+
+const mapStateToProps = state => {
+    return {
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSetAdminAs: (event) => dispatch(setAdminStatus(event.target.value))
+    }
+};
+
 class AppLogIn extends Component {
     state = {
         user: '',
@@ -26,9 +42,12 @@ class AppLogIn extends Component {
                     setName(res.data.name);
 
                     if(res.data.administrator) { //set the admin view if isAdmin = true
-                        this.props.history.replace('/')
+                        this.props.history.replace('/');
+                        this.props.onSetAdminAs(true);
+
                     }else {
-                        this.props.history.replace('/')
+                        this.props.history.replace('/');
+                        this.props.onSetAdminAs(false);
                     }
                 }
             })
@@ -62,4 +81,4 @@ class AppLogIn extends Component {
     }
 }
 
-export default AppLogIn;
+export default connect(mapStateToProps, mapDispatchToProps)(AppLogIn);
