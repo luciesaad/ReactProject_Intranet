@@ -10,9 +10,9 @@ class App extends Component {
         if (!isLoggedIn()) {
             this.props.history.replace('/login')
         } else {
-            console.log('init.Now running get method for the token');
+
             try {
-                // TODO: Removed because xxx:3010/api generates server side error
+
                 /*axios({
                     method: 'get',
                     url: 'http://localhost:3010/api',
