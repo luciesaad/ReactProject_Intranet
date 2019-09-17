@@ -6,14 +6,28 @@ import CardList from "./search/app-intranet-admin-search-cardList";
 import ErrorBoundry from "./search/app-intranet-admin-search-errorBoundry";
 import EditUser from "./search/app-intranet-admin-search-editUser";
 
+// React-Redux
+import {connect} from 'react-redux';    // Higher order function that return an other function
+import {setSearchField} from "../../redux/actions";
+
+const mapStateToProps = state => {
+    return {
+        searchField: state.searchField  // From reducers
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+    }
+};
+
+
 class AppIntranetAdminSearchUsers extends Component {
 
     constructor(){
         super();
-
         this.state = {
             employees: [],
-            searchField: '',
             editUser: ''
         }
     }
@@ -28,17 +42,14 @@ class AppIntranetAdminSearchUsers extends Component {
             })
     }
 
-    onSearchChange = (event) => {
-        this.setState({searchField: event.target.value});
-    };
-
     onEditUser = (event) => {
         // console.log("SearchUsers.js: onEditUser = " + event);
         this.setState({editUser: event})
     };
 
     render() {
-        const {employees, searchField} = this.state;
+        const {employees} = this.state;
+        const {searchField, onSearchChange} = this.props;
 
         const filterEmployees = employees.filter(employee => {
             return employee.email.toLowerCase().includes(searchField.toLowerCase())
@@ -50,7 +61,7 @@ class AppIntranetAdminSearchUsers extends Component {
             return (
                 <div className='tc'>
                     <h1 className='f2'>Sök bland anställda</h1>
-                    <SearchBox searchChange={this.onSearchChange}/>
+                    <SearchBox searchChange={onSearchChange}/>
                     <Scroll>
                         <ErrorBoundry>
                             <div className='fl w-80'>
@@ -67,7 +78,7 @@ class AppIntranetAdminSearchUsers extends Component {
     }
 }
 
-export default AppIntranetAdminSearchUsers
+export default connect(mapStateToProps, mapDispatchToProps)(AppIntranetAdminSearchUsers)
 
 
 

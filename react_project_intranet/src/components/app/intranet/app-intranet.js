@@ -15,7 +15,7 @@ class AppIntranet extends Component {
     state = {
         categorySelected: 0,
         // isUserAdmin: true,
-        // administrateUsers: false
+        administrateUsers: true
     };
 
     /*componentDidMount() {
@@ -38,7 +38,7 @@ class AppIntranet extends Component {
                         className='tc code bg-lightest-blue'
                         selectedCat={this.state.categorySelected}
                         onSelect={this.onCategoryChange}
-                        /*userIsAdmin={this.state.administrateUsers}*//>
+                        userIsAdmin={this.state.administrateUsers}/>
 
                     <Route exact path='/' component={dashBoard}/>
                     <Route path='/chat' component={chat}/>
