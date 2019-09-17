@@ -1,5 +1,6 @@
 const User = require('../models/user.model')
 const jwt = require('jsonwebtoken')
+const { check, validationResult } = require('express-validator');
 
 
 function createJWT(user) {
@@ -14,19 +15,33 @@ const verifyJWT = token =>
             if (err) return reject(err)
             resolve(payload)
         })
-    })
+    });
+
+
+const validation = [
+
+        check('email').isEmail(),
+        check('password').isLength({min: 5})
+];
+
+function handleValidationErrors(req, res, next) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array()});
+    }
+
+    next();
+};
 
 const signup = (req, res) => {
 
-    //TODO Exercise - add input validation and error handling
     const user = new User()
     user.email = req.body.signupData.newUserName
     user.password = req.body.signupData.newUserPassword
     user.isAdmin = req.body.signupData.newIsAdmin
-    console.log(user)
+
     user.save(function (err, user) {
         if (err) {
-            console.log('something doesnt add up')
             console.log(err)
             return res.status(500).end()
         } else {
@@ -51,10 +66,11 @@ const login = async (req, res) => {
         return res.status(400).send({ message: 'invalid combination' })//TODO why is it not returning 400 with the message? //Lucie
     }
 
-    const administrator = user.isAdmin
-    console.log(administrator)
+    const name = req.body.loginData.userName;
+    const administrator = user.isAdmin;
+    console.log(administrator);
     const signedJWT = createJWT(user)
-    return res.status(201).send({signedJWT, administrator})
+    return res.status(201).send({signedJWT, administrator, name})
 }
 
 //for now running lots of console logs to check it works.
@@ -81,6 +97,8 @@ const isAuthorized = async (req, res) => {
 }
 
 module.exports = {
+    validation: validation,
+    handleValidationErrors: handleValidationErrors,
     signup: signup,
     login: login,
     isAuthorized: isAuthorized

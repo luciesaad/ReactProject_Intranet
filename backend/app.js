@@ -7,6 +7,8 @@ const isAuthorized = require('./controllers/auth').isAuthorized;
 const port = 3010;
 const signup = require('./controllers/auth').signup;
 const login = require('./controllers/auth').login;
+const validation = require('./controllers/auth').validation;
+const handleValidationErrors = require('./controllers/auth').handleValidationErrors;
 
 //create a new express app for chat
 const app_chat = express();
@@ -44,9 +46,9 @@ app.get('/', function(req, res){
 })
 
 
-app.post('/signup', signup);
-app.post('/login', login);
-app.use('/api', isAuthorized);
+app.post('/signup', validation, handleValidationErrors, signup);
+app.post('/login', login,isAuthorized);
+app.use('/posts', );
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
 http.listen(port_chat, ()=> console.log('Chat listening on port: ' + port_chat));
