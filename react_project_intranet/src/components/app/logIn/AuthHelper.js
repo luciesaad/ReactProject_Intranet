@@ -15,7 +15,7 @@ export const isLoggedIn = () => {
 }
 
 export const setAdmin = (admin) => {sessionStorage.setItem('is Admin', admin)}
-export const getAdmin = () => {sessionStorage.getItem('is Admin')}
+export const getAdmin = () => {return sessionStorage.getItem('is Admin')}
 
 
 export const isAdmin = () => {
