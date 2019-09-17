@@ -1,5 +1,6 @@
 import React from "react";
-import {logout} from '../../logIn/AuthHelper';
+import {browserHistory} from 'react-router'
+//import {logout} from '../../logIn/AuthHelper';
 
 import MontessoriVillornaLogo from "../../../../assets/images/logo_montessorivillorna.png";
 
@@ -12,6 +13,13 @@ let style = {
     width: "100%",
 };
 
+const handleLogOut =() => {
+    sessionStorage.removeItem('keyToTheFuture')
+    sessionStorage.removeItem('is Admin')
+    sessionStorage.removeItem('name')
+    window.location.reload(false)
+    console.log('user logged out')
+}
 const AppIntranetFooter = () => {
     return (
         <div className='tc bg-gray bw2 shadow-5 cf' style={style}>
@@ -22,7 +30,7 @@ const AppIntranetFooter = () => {
                 Copyright INTRA SOLUTIONS
             </div>
             <div className='fl w-third f2'>
-                <button onClick={logout}>Logout</button>
+                <button onClick={handleLogOut}>Log out</button>
             </div>
         </div>
     );

@@ -6,31 +6,38 @@ import CardList from "./search/app-intranet-admin-search-cardList";
 import ErrorBoundry from "./search/app-intranet-admin-search-errorBoundry";
 import EditUser from "./search/app-intranet-admin-search-editUser";
 
+// React-Redux
+import {connect} from 'react-redux';    // Higher order function that return an other function
+import {setSearchField, requestEmployees} from "../../redux/actions";
+
+const mapStateToProps = state => {
+    return {
+        searchField: state.searchEmployees.searchField,  // From reducers
+        employees: state.requestEmployees.employees,
+        isPending: state.requestEmployees.isPending,
+        error: state.requestEmployees.error
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+        onRequestEmployees: () => dispatch(requestEmployees())
+    }
+};
+
+
 class AppIntranetAdminSearchUsers extends Component {
 
-    constructor(){
+    constructor() {
         super();
-
         this.state = {
-            employees: [],
-            searchField: '',
             editUser: ''
         }
     }
 
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => {
-                return response.json();
-            })
-            .then(users => {
-                this.setState({employees: users})
-            })
+        this.props.onRequestEmployees();
     }
-
-    onSearchChange = (event) => {
-        this.setState({searchField: event.target.value});
-    };
 
     onEditUser = (event) => {
         // console.log("SearchUsers.js: onEditUser = " + event);
@@ -38,52 +45,33 @@ class AppIntranetAdminSearchUsers extends Component {
     };
 
     render() {
-        const {employees, searchField} = this.state;
-
+        const {searchField, onSearchChange, employees, isPending} = this.props;
+        console.log(employees)
         const filterEmployees = employees.filter(employee => {
-            return employee.email.toLowerCase().includes(searchField.toLowerCase())
+            return employee.email.toLowerCase().includes(searchField.toLowerCase());
         });
 
-        if (!employees.length) {
-            return <h1>Loading...</h1>;
-        } else {
-            return (
-                <div className='tc'>
-                    <h1 className='f2'>Sök bland anställda</h1>
-                    <SearchBox searchChange={this.onSearchChange}/>
-                    <Scroll>
-                        <ErrorBoundry>
-                            <div className='fl w-80'>
-                                <CardList employees={filterEmployees} editUser={this.onEditUser}/>
-                            </div>
-                            <div className='fl w-20'><
-                                EditUser editThisUser={this.state.editUser}/>
-                            </div>
-                        </ErrorBoundry>
-                    </Scroll>
-                </div>
-            )
-        }
+        return isPending    // if isPending is true return "Loading..." else return <div>
+            ? <h1>Loading...</h1>
+            : <div className='tc'>
+                <h1 className='f2'>Sök bland anställda</h1>
+                <SearchBox searchChange={onSearchChange}/>
+                <Scroll>
+                    <ErrorBoundry>
+                        <div className='fl w-20'>
+                            <EditUser editThisUser={this.state.editUser}/>
+                        </div>
+                        <div className='fl w-80'>
+                            <CardList employees={filterEmployees} editUser={this.onEditUser}/>
+                        </div>
+                    </ErrorBoundry>
+                </Scroll>
+            </div>
     }
 }
 
-export default AppIntranetAdminSearchUsers
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(AppIntranetAdminSearchUsers)
 
 
 /*

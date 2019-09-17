@@ -9,6 +9,7 @@ import Footer from "./footer";
 
 import Admin from "./admin";
 import Chat from "./chat";
+// import {getAdmin} from "../logIn/AuthHelper";
 
 class AppIntranet extends Component {
     state = {
@@ -16,6 +17,11 @@ class AppIntranet extends Component {
         // isUserAdmin: true,
         administrateUsers: true
     };
+
+    /*componentDidMount() {
+        console.log("getAdmin from local storage = " + getAdmin())
+        this.setState({administrateUsers: getAdmin()})
+    }*/
 
     onCategoryChange = selectedCat => {
         // console.log("selected category = " + selectedCat);

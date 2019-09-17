@@ -118,6 +118,7 @@ export default function View() {
                         className={classes.button}
                         onClick={() => {
                             sendChatAction({from: username, msg: textValue, topic: activeTopic});
+
                             const chatData = {
                                 from: username,
                                 msg: textValue,
@@ -133,6 +134,8 @@ export default function View() {
                             changeTextValue(''); //reset TextValue to empty after sending
                         }}
                     >
+                            changeTextValue('');
+                        }}>
                         Send
                     </Button>
                 </div>

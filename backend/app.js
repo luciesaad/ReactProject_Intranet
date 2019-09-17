@@ -6,11 +6,16 @@ const envVars = require('dotenv').config();
 const port = 3010;
 const signup = require('./controllers/auth').signup;
 const login = require('./controllers/auth').login;
+
 const saveMessage = require('./controllers/chat').saveMessage;
 const Message = require('./models/message.model');
 const User = require('./models/user.model');
 const isAuthorized = require('./controllers/chat').isAuthorized;
 //const chatRouter = require ('./routes/chatRouter');
+
+const validation = require('./controllers/auth').validation;
+const handleValidationErrors = require('./controllers/auth').handleValidationErrors;
+
 
 //create a new express app for chat
 const app_chat = express();
@@ -72,11 +77,12 @@ function getEmail(users, id){
     return email;
 }
 
-app.post('/signup', signup);
+app.post('/signup', validation, handleValidationErrors,signup);
 app.post('/login', login);
 app.post('/chat', saveMessage);
 //app.use('/api/message', isAuthorized); //protected route - running its methods for messages only if authorized
 //app.use('/api/messages', chatRouter);
+
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
 http.listen(port_chat, ()=> console.log('Chat listening on port: ' + port_chat));
