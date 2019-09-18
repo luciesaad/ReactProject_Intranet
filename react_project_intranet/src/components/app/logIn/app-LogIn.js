@@ -16,7 +16,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSetAdminAs: (event) => dispatch(setAdminStatus(event.target.value))
+        onSetAdminAs: (event) => dispatch(setAdminStatus(event.value))
     }
 };
 

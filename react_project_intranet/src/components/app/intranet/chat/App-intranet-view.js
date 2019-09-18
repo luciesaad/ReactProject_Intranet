@@ -11,7 +11,8 @@ import TextField from '@material-ui/core/TextField';
 
 import {CTX} from './App-intranet-store'
 import axios from "axios";
-import {getToken} from "../../logIn/AuthHelper";
+import {getHistory} from "./App-intranet-store";
+//import {getToken} from "../../logIn/AuthHelper";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -41,20 +42,6 @@ const useStyles = makeStyles(theme => ({
     }
 
 }));
-
-/*function getPreviousMsgs() {
-       axios({
-            method: 'get',
-            url: 'http://localhost:3010/api/messages',
-            headers: {
-                authorization: 'Bearer ' + getToken()
-            }
-        }).then((result) => {
-           this.setState({previous: result}
-        })
-
-
-}*/
 
 export default function View() {
 
@@ -118,6 +105,7 @@ export default function View() {
                         className={classes.button}
                         onClick={() => {
                             sendChatAction({from: username, msg: textValue, topic: activeTopic});
+                            getHistory();
 
                             const chatData = {
                                 from: username,
@@ -134,8 +122,6 @@ export default function View() {
                             changeTextValue(''); //reset TextValue to empty after sending
                         }}
                     >
-                            changeTextValue('');
-                        }}>
                         Send
                     </Button>
                 </div>

@@ -11,22 +11,7 @@ class App extends Component {
             this.props.history.replace('/login')
         } else {
             try {
-
-                /*axios({
-
-            console.log('init.Now running get method for the token');
-            /*try {
-                // TODO: Removed because xxx:3010/api generates server side error
-                axios({
-                    method: 'get',
-                    url: 'http://localhost:3010/post',
-                    headers: {
-                        authorization: 'Bearer ' + getToken()
-                    }
-                }).then((result) => {
-                    console.log("app protected resource");
-                    console.log(result)
-                }) */
+                this.props.history.replace('/')
             } catch (e) {
                 console.log("Catch Error = " + e)
            }
