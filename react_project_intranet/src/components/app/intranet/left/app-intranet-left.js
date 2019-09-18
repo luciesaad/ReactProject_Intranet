@@ -6,7 +6,7 @@ import MeetingPlanning from "./meetingPlanning";
 
 const AppIntranetLeft = () => {
     return (
-        <div className='bg-washed-green pa2 fl w-25'>
+        <div className='pa2 fl w-25'>
             <div>
                 <CaseManagement/>
             </div>

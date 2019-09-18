@@ -4,7 +4,7 @@ import SimpleChat from "./simpleChat";
 
 export const AppIntranetRight = () => {
     return (
-        <div className='bg-washed-yellow pa2 fl w-25'>
+        <div className='pa2 fl w-25'>
             <div>
                 <Calendar/>
             </div>
