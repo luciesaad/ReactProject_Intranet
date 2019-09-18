@@ -1,8 +1,15 @@
-const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const Schema = mongoose.Schema;
+const Message = require('../models/message.model');
 
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
     {
+        _id: {
+            type: Schema.Types.ObjectId,
+            required: true,
+            auto: true
+    },
         email: {
             type: String,
             required: true,
@@ -17,7 +24,8 @@ const userSchema = new mongoose.Schema(
             type: Boolean,
             required: true,
             unique: false
-        }
+        },
+        messages: [{ type: Schema.Types.ObjectId, ref: 'Message' }]
     },
     { timestamps: true }
 )

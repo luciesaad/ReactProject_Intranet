@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 import {CTX} from './App-intranet-store'
+import axios from "axios";
+import {getToken} from "../../logIn/AuthHelper";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -40,7 +42,22 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function PaperSheet() {
+/*function getPreviousMsgs() {
+       axios({
+            method: 'get',
+            url: 'http://localhost:3010/api/messages',
+            headers: {
+                authorization: 'Bearer ' + getToken()
+            }
+        }).then((result) => {
+           this.setState({previous: result}
+        })
+
+
+}*/
+
+export default function View() {
+
     const classes = useStyles();
 
     //CTX Store
@@ -62,6 +79,7 @@ export default function PaperSheet() {
                 </Typography>
                 <div className={classes.flex}>
                     <div className={classes.topicsWindow}>
+
                         <List>
                             {
                                 topics.map(topic => (
@@ -100,6 +118,22 @@ export default function PaperSheet() {
                         className={classes.button}
                         onClick={() => {
                             sendChatAction({from: username, msg: textValue, topic: activeTopic});
+
+                            const chatData = {
+                                from: username,
+                                msg: textValue,
+                                topic: activeTopic
+                            }
+                            //post method - sending message
+                            axios.post('http://localhost:3010/chat', {chatData})
+                                .then(res => {
+                                    if (res && res.data && res.data.signedJWT) { //signed JWT required for posting message too
+                                        console.log('message has been saved')
+                                    }
+                                })
+                            changeTextValue(''); //reset TextValue to empty after sending
+                        }}
+                    >
                             changeTextValue('');
                         }}>
                         Send

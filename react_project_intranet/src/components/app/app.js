@@ -10,6 +10,10 @@ class App extends Component {
         if (!isLoggedIn()) {
             this.props.history.replace('/login')
         } else {
+            try {
+
+                /*axios({
+
             console.log('init.Now running get method for the token');
             /*try {
                 // TODO: Removed because xxx:3010/api generates server side error
@@ -22,10 +26,10 @@ class App extends Component {
                 }).then((result) => {
                     console.log("app protected resource");
                     console.log(result)
-                })
+                }) */
             } catch (e) {
                 console.log("Catch Error = " + e)
-            }*/
+           }
         }
     }
 
