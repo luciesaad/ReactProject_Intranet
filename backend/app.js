@@ -56,6 +56,12 @@ app.get('/', function(req, res){
 })
 
 
+app.get('/users', function(req, res) {
+    User.find({}, 'email', function(err, data) {
+            res.send(data); //send all msgs (from, message) to front end
+        });
+});
+
 app.get('/api/messages', function(req, res) {
     User.find({}, function(err, data) {
         Message.find({},'from message topic', function(err, messages) {

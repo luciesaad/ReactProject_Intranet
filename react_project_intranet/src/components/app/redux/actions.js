@@ -17,7 +17,7 @@ export const setSearchField = (text) => ({          // ({ automatic return =) })
 // The first function provide the "dispatch function" to the second function
 export const requestEmployees = () => (dispatch) => {   // Higher order function
     dispatch({type: REQUEST_EMPLOYEE_PENDING});
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch('http://localhost:3010/users')
         .then(response => response.json())
         .then(data => dispatch({type: REQUEST_EMPLOYEE_SUCCESS, payload: data}))
         .catch(error => dispatch({ type: REQUEST_EMPLOYEE_FAILED, payload: error}))
