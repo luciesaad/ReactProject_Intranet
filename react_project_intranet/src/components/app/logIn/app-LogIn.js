@@ -43,11 +43,11 @@ class AppLogIn extends Component {
 
                     if(res.data.administrator) { //set the admin view if isAdmin = true
                         this.props.history.replace('/');
-                        this.props.onSetAdminAs(true);
+                        // this.props.onSetAdminAs(true);
 
                     }else {
                         this.props.history.replace('/');
-                        this.props.onSetAdminAs(false);
+                        // this.props.onSetAdminAs(false);
                     }
                 }
             })
