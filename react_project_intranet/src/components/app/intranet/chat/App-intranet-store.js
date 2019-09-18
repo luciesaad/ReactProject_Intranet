@@ -1,6 +1,7 @@
 import React from 'react';
 import io from 'socket.io-client';
 import axios from 'axios'
+import {getToken} from "../../logIn/AuthHelper";
 
 //create context
 export const CTX = React.createContext();
@@ -12,21 +13,27 @@ const initState = {
 }
 
 let prevMessages = initState;
-getPreviousMsgs().then(result => {
-    console.log(result);
-    result.forEach(item => {
-        const {from, message, topic} = item; //destructured for later use
-        const msg = message;
-        prevMessages = {
-            ...prevMessages,
-            [topic]: [
-                ...prevMessages[topic],
-                {from, msg}
-            ]
-        }
+
+getHistory();
+
+export function getHistory() {
+    getPreviousMsgs().then(result => {
+        console.log(result);
+        result.forEach(item => {
+            const {from, message, topic} = item; //destructured for later use
+            const msg = message;
+            prevMessages = {
+                ...prevMessages,
+                [topic]: [
+                    ...prevMessages[topic],
+                    {from, msg}
+                ]
+            }
+        });
+        console.log(prevMessages);
     });
-    console.log(prevMessages);
-});
+}
+
 
 async function getPreviousMsgs() {
     const result = await axios.get('http://localhost:3010/api/messages');
@@ -78,7 +85,7 @@ export default function Store(props) {
     }
     return(
         <CTX.Provider value={{allChats, sendChatAction, username}}>
-            {props.children}
+            {props.children}   // View ligger här
         </CTX.Provider>
     )
 }

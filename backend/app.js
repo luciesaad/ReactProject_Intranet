@@ -49,9 +49,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 mongoose.connect('mongodb://localhost/intranet_db', {useNewUrlParser: true, useCreateIndex: true});
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+//app.use('/api', isAuthorized);
+
 app.get('/', function(req, res){
     res.json({someProperty : "Some value"})
 })
+
+
 app.get('/api/messages', function(req, res) {
     User.find({}, function(err, data) {
         Message.find({},'from message topic', function(err, messages) {
@@ -79,8 +83,7 @@ function getEmail(users, id){
 
 app.post('/signup', validation, handleValidationErrors,signup);
 app.post('/login', login);
-app.post('/chat', saveMessage);
-//app.use('/api/message', isAuthorized); //protected route - running its methods for messages only if authorized
+app.post('/chat', saveMessage); //protected route - running its methods for messages only if authorized
 //app.use('/api/messages', chatRouter);
 
 
