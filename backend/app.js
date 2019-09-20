@@ -13,16 +13,16 @@ const User = require('./models/user.model');
 
 //create a new express app for chat
 const app_chat = express();
-const http = require('http').Server(app_chat)
+const http = require('http').Server(app_chat);
 const io = require('socket.io');
 const port_chat = 9090;
 const pocket = io(http);
 
 //socket backend logic
-pocket.on('connection', function(socket){
-    console.log('user connected')
+pocket.on('connection', function (socket) {
+    console.log('user connected');
 
-    socket.on('chat message', function(msg){
+    socket.on('chat message', function (msg) {
         console.log('message: ' + JSON.stringify(msg));
         pocket.emit('chat message', msg)
     })
@@ -47,11 +47,10 @@ app.get('/', function(req, res){
     res.json({someProperty : "Some value"})
 })
 
-
-app.get('/users', function(req, res) {
-    User.find({}, 'email', function(err, data) {
-            res.send(data); //send all msgs (from, message) to front end
-        });
+app.get('/users', function (req, res) {
+    User.find({}, 'email', function (err, data) {
+        res.send(data); //send all msgs (from, message) to front end
+    });
 });
 
 //getter for msgs and users - uses method getEmail in order to send email instead of the user id to frontend
@@ -69,7 +68,7 @@ app.get('/api/messages', function(req, res) {
     })
 });
 
-function getEmail(users, id){
+function getEmail(users, id) {
     let email = '';
     users.forEach(item => {
         const newId = item._id;
@@ -85,5 +84,5 @@ app.post('/login', login);
 app.post('/chat', saveMessage);
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
-http.listen(port_chat, ()=> console.log('Chat listening on port: ' + port_chat));
+http.listen(port_chat, () => console.log('Chat listening on port: ' + port_chat));
 

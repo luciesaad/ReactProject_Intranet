@@ -25,12 +25,12 @@ const userSchema = new Schema(
             required: true,
             unique: false
         },
-        messages: [{ type: Schema.Types.ObjectId, ref: 'Message' }]
+        messages: [{type: Schema.Types.ObjectId, ref: 'Message'}]
     },
-    { timestamps: true }
-)
+    {timestamps: true}
+);
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
     if (!this.isModified('password')) {
         return next()
     }
@@ -39,14 +39,14 @@ userSchema.pre('save', function(next) {
         if (err) {
             return next(err)
         }
-        this.password = hash
+        this.password = hash;
         next()
     })
-})
+});
 
-userSchema.methods.checkPassword = function(password) {
-    console.log('in check password')
-    const passwordHash = this.password
+userSchema.methods.checkPassword = function (password) {
+    console.log('in check password');
+    const passwordHash = this.password;
     return new Promise((resolve, reject) => {
         bcrypt.compare(password, passwordHash, (err, same) => {
             if (err) {
@@ -55,6 +55,6 @@ userSchema.methods.checkPassword = function(password) {
             resolve(same)
         })
     })
-}
-const User = mongoose.model('users', userSchema)
-module.exports = User
+};
+const User = mongoose.model('users', userSchema);
+module.exports = User;
