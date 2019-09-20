@@ -28,7 +28,6 @@ const AppIntranetMain = () => {
             </article>
 
             </div>
-        </div>
     );
 };
 
