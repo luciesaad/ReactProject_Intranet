@@ -27,6 +27,7 @@ const AppIntranetMain = () => {
     Hon lyfter speciellt fram budgetsatsningar på försvar och välfärd samt den slopade värnskatten som Liberalerna menar behövs för att stärka den svenska konkurrenskraften.</p>
             </article>
 
+            </div>
         </div>
     );
 };
