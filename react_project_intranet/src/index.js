@@ -12,7 +12,6 @@ import '@material-ui/core';
 import {
     BrowserRouter as Router,
     Route,
-    Link
 } from "react-router-dom";
 
 // ============= Redux related =============
@@ -34,7 +33,7 @@ ReactDOM.render(
             <Fragment>
                 <Route exact path="/" component={App}/> {/*//path to protected resources available only with login*/}
                 <Route exact path="/login" component={LogIn}/> {/*//redirect here without login*/}
-                <Route exact path="/admin/start" component={Admin} />*/}
+                <Route exact path="/admin/start" component={Admin} />
             </Fragment>
         </Router>
     </Provider>, document.getElementById('root'));

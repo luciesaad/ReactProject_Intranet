@@ -7,7 +7,7 @@ class AppIntranetAdminStart extends Component {
         return(
             <Fragment>
                 <h1>God Mode</h1>
-                <p>Här kan man lägga till, läsa, updatera och radera användare.</p>
+                <p>Here you can search, add, update or remove users.</p>
             </Fragment>
         )
     }

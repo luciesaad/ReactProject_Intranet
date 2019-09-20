@@ -6,7 +6,6 @@ const AppIntranetAdminSearchCardList = ({employees, editUser}) => {
     function handleEvent(event) {
         const clickedEmailAddress = event.target.textContent.toLowerCase();
         editUser(clickedEmailAddress);
-        // alert("Key: " + clickedEmailAddress + " was clicked");
     };
 
     return (

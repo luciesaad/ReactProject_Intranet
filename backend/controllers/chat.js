@@ -1,14 +1,6 @@
 const User = require('../models/user.model')
 const Message = require('../models/message.model')
-const jwt = require('jsonwebtoken')
 
-const verifyJWT = token =>
-    new Promise((resolve, reject) => {
-        jwt.verify(token, process.env.JWT_DEV_ENV_SECRET, (err, payload) => {
-            if (err) return reject(err);
-            resolve(payload)
-        })
-    });
 const saveMessage = async (req, res) => {
     const message = new Message(); //create new instance Message
     //get id of the user that sent the message
@@ -37,26 +29,6 @@ const saveMessage = async (req, res) => {
         });
 };
 
-/*const isAuthorized = async (req, res) => {
-    console.log('in isAuthorized')
-    const bearer = req.headers.authorization;
-    const token = bearer.split('Bearer ')[1].trim();
-    let payload;
-        try {
-            payload = await verifyJWT(token)
-        } catch (e) {
-            return res.status(500).end()
-        }
-    const user = await User.findById(payload.id).exec();
-
-    if (!user) {
-        return res.status(500).end()
-    }
-    req.user = user;
-    next()
-}*/
-
 module.exports = {
     saveMessage: saveMessage,
-    //isAuthorized: isAuthorized
 }

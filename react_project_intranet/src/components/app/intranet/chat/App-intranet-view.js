@@ -12,7 +12,6 @@ import TextField from '@material-ui/core/TextField';
 import {CTX} from './App-intranet-store'
 import axios from "axios";
 import {getHistory} from "./App-intranet-store";
-//import {getToken} from "../../logIn/AuthHelper";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -31,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     chatWindow: {
         width: '70%',
         height: '300px',
-        padding: '20px'
+        padding: '10px'
     },
     chatBox: {
         width: '85%'
@@ -118,7 +117,7 @@ export default function View() {
                                     if (res && res.data && res.data.signedJWT) { //signed JWT required for posting message too
                                         console.log('message has been saved')
                                     }
-                                })
+                                });
                             changeTextValue(''); //reset TextValue to empty after sending
                         }}
                     >

@@ -1,17 +1,18 @@
 import React from "react";
-import {browserHistory} from 'react-router'
-//import {logout} from '../../logIn/AuthHelper';
-
-import MontessoriVillornaLogo from "../../../../assets/images/logo_montessorivillorna.png";
 
 let style = {
-    padding: "0px",
+    padding: "5px",
     position: "fixed",
     left: "0",
     bottom: "0",
-    height: "60px",
+    height: "30px",
     width: "100%",
+    textAlign: "left"
 };
+let styleButton = {
+    textAlign: "right",
+    borderRadius: "5px"
+}
 
 const handleLogOut =() => {
     sessionStorage.removeItem('keyToTheFuture')
@@ -22,15 +23,12 @@ const handleLogOut =() => {
 }
 const AppIntranetFooter = () => {
     return (
-        <div className='tc bg-gray bw2 shadow-5 cf' style={style}>
-            <div className='fl w-third'>
-                <img src={MontessoriVillornaLogo} alt="Logotype for Montessori school" style={{width: 300, height: 60}}/>
-            </div>
-            <div className='fl w-third f2'>
+        <div className='bg-white-90 bw2' style={style}>
+            <div className='fl w-70'>
                 Copyright INTRA SOLUTIONS
             </div>
-            <div className='fl w-third f2'>
-                <button onClick={handleLogOut}>Log out</button>
+            <div className='fl w-30' style={styleButton} >
+                <button style={styleButton} onClick={handleLogOut}>Log out</button>
             </div>
         </div>
     );

@@ -9,7 +9,7 @@ const AppIntranetAdminNav = ({selectedAdminCat, onSelectAdminNav}) => {
         <div>
             <Paper className='fl w-100'>
                 <Tabs
-                    className='f1-m bg-washed-red'
+                    className='f1-m bg-white'
                     value={selectedAdminCat}
                     onChange={(event, index) => {
                         onSelectAdminNav(index)
@@ -18,8 +18,8 @@ const AppIntranetAdminNav = ({selectedAdminCat, onSelectAdminNav}) => {
                     textColor='primary'
                     centered>
                     <Tab label='Start' component={Link} to='/admin/start'/>
-                    <Tab label='create New User' component={Link} to='/admin/createNewUser'/>
-                    <Tab label='search Users' component={Link} to='/admin/searchUsers'/>
+                    <Tab label='Create New User' component={Link} to='/admin/createNewUser'/>
+                    <Tab label='Update Users' component={Link} to='/admin/searchUsers'/>
                 </Tabs>
             </Paper>
         </div>

@@ -23,10 +23,10 @@ class AppIntranetAdminSearchEditUser extends Component {
         if (newPass1.length >= 8 && newPass2.length >= 8) {
             // Compare passwords
             if (newPass1 === newPass2) {
-                alert("Passwords match, updating i database");
+                alert("Passwords match, updating in database");
                 // TODO: put update password function to database here
             } else {
-                alert("passwords don't match");
+                alert("Passwords don't match");
             }
         } else {
             alert("Password is to short")
@@ -41,10 +41,7 @@ class AppIntranetAdminSearchEditUser extends Component {
 
     onDeleteUser = event => {
         event.preventDefault();
-
-        // TODO: Send erase request to db
-
-        alert("Användare raderad")
+        alert("User removed")
     };
 
 
@@ -53,38 +50,32 @@ class AppIntranetAdminSearchEditUser extends Component {
         return (
             <Fragment>
 
-                {/*cRud*/}
-                <div>
-                    <h2>Uppdatera användare</h2>
-                    <p>{this.props.editThisUser}</p>
-                </div>
-
                 {/*crUd*/}
-                <div className='ba br4 shadow-5'>
+                <div className='bg-white-60 br1 pa2 ma2 shadow-5'>
 
                     <form onSubmit={event => this.onFormSubmit(event)}>
-                        <h3>Byt lösenord</h3>
+                        <h3>Change Password</h3>
                         <input
                             type="password"
                             value={this.state.newPassword}
-                            placeholder='Nytt lösenord'
+                            placeholder='New password'
                             onChange={event => this.setState({newPassword: event.target.value})}/>
-
+                        <p></p>
                         <input
                             type="password"
                             value={this.state.confirmPassword}
-                            placeholder='Bekräfta lösenord'
+                            placeholder='Confirm password'
                             onChange={event => this.setState({confirmPassword: event.target.value})}/>
 
-                        <p><input type="submit"/></p>
+                        <p><button>Update</button></p>
                     </form>
                 </div>
                 <br/>
 
                 {/*cruD*/}
-                <div className='ba br4 shadow-5 bg-washed-red'>
-                    <h3>Radera användare</h3>
-                    <h4 className='dark-red'>Bekräfta &nbsp;&nbsp;
+                <div className=' br1 shadow-5 pa2 ma2 bg-washed-red'>
+                    <h3>Delete user</h3>
+                    <h4 className='dark-red'>Confirm &nbsp;&nbsp;
                         <FormControlLabel
                             control={
                                 <Switch
@@ -97,7 +88,7 @@ class AppIntranetAdminSearchEditUser extends Component {
                         />
                     </h4>
                     <p>
-                        <button disabled={!this.state.deleteUser} onClick={this.onDeleteUser}>Radera</button>
+                        <button disabled={!this.state.deleteUser} onClick={this.onDeleteUser}>Delete</button>
                     </p>
                 </div>
             </Fragment>

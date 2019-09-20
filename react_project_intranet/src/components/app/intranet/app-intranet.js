@@ -24,7 +24,6 @@ class AppIntranet extends Component {
     }
 
     onCategoryChange = selectedCat => {
-        // console.log("selected category = " + selectedCat);
         this.setState({
             categorySelected: selectedCat
         })
